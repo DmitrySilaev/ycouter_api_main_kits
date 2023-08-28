@@ -9,10 +9,9 @@ user_body = {
 }
 
 header_kit = {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer jknnFApafP4awfAIFfafam2fma"
+    "Authorization": "Bearer "
 }
 
 kit_body = {
-       "name": "Мой набор"
+    "name": "Мой набор"
 }

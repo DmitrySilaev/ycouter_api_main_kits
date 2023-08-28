@@ -131,7 +131,7 @@ def test_create_name_kit_spaces_success_response():
 
 
 # Тест 9. Разрешены цифры
-# Параметр name состоит из спецсимволов
+# Параметр name состоит из цифр
 
 
 def test_create_name_kit_numbers_success_response():
@@ -147,7 +147,7 @@ def test_create_name_no_name_error_response():
     # Иначе можно потерять данные из исходного словаря
     kit_body = data.kit_body.copy()
     # Удаление параметра name из запроса
-    kit_body.pop("name")
+    del kit_body["name"]
     # Проверка полученного ответа
     negative_assert_code_400(kit_body)
 
@@ -157,14 +157,4 @@ def test_create_name_no_name_error_response():
 
 
 def test_create_name_number_type_name_error_response():
-    # В переменную kit_body сохраняется обновлённое тело запроса
-    kit_body = get_kit_body(123)
-    # В переменную user_response сохраняется результат запроса на создание пользователя:
-    response = sender_stand_request.post_new_client_kit(kit_body)
-
-    # Проверка, что код ответа равен 400
-    assert response.status_code == 400
-    # Проверка, что в теле ответа атрибут "code" равен 400
-    assert response.json()["code"] == 400
-    # Проверка текста в теле ответа в атрибуте "message"
-    assert response.json()["message"] == "Не все необходимые параметры были переданы"
+    negative_assert_code_400(123)

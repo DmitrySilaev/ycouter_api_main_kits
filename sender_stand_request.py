@@ -11,10 +11,9 @@ def post_new_user(body):
 
 response = post_new_user(data.user_body)
 
-dict_token = response.json()
-key_token = dict_token["authToken"]
 auth_token = data.header_kit
-user_token = "Bearer "+key_token
+user_token = "Bearer " + response.json()["authToken"]
+auth_token["Content-Type"] = data.header_user["Content-Type"]
 auth_token["Authorization"] = user_token
 
 print(response.status_code)
