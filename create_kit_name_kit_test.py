@@ -46,6 +46,22 @@ def negative_assert_code_400(kit_name):
     assert response.json()["message"] == "Не все необходимые параметры были переданы"
 
 
+# Функция для негативной проверки, когда в ответе ошибка: "Не все необходимые параметры были переданы"
+
+
+def negative_assert_no_name(kit_body):
+    # В переменную response сохраняется результат
+    response = sender_stand_request.post_new_client_kit(kit_body)
+
+    # Проверяется, что код ответа равен 400
+    assert response.status_code == 400
+
+    # Проверяется, что в теле ответа атрибут "code" равен 400
+    assert response.json()["code"] == 400
+    # Проверяется текст в теле ответа в атрибуте "message"
+    assert response.json()["message"] == "Не все необходимые параметры были переданы"
+
+
 # Тест 1. Успешное создание набора
 # Параметр name состоит из 1 символа
 
@@ -147,9 +163,9 @@ def test_create_name_no_name_error_response():
     # Иначе можно потерять данные из исходного словаря
     kit_body = data.kit_body.copy()
     # Удаление параметра name из запроса
-    del kit_body["name"]
+    kit_body.pop("name") # или можно так: del kit_body["name"]
     # Проверка полученного ответа
-    negative_assert_code_400(kit_body)
+    negative_assert_no_name(kit_body)
 
 
 # Тест 11. Ошибка. Передан другой тип параметра
