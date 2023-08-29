@@ -9,7 +9,7 @@ user_body = {
 }
 
 header_kit = {
-    "Authorization": "Bearer "
+    "Authorization": "Bearer token"
 }
 
 kit_body = {

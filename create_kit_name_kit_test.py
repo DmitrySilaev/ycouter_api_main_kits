@@ -143,7 +143,7 @@ def test_create_name_kit_special_characters_success_response():
 
 
 def test_create_name_kit_spaces_success_response():
-    positive_assert("Человек и КО")
+    positive_assert(" Человек и КО ")
 
 
 # Тест 9. Разрешены цифры
